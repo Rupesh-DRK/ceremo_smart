@@ -1,0 +1,124 @@
+{% extends 'CeremoAdmin/master_admin.html' %}
+{% load static %}
+{% block title %}
+home  
+{% endblock %}
+{% block content %}
+<div id="Volunteer">
+<button onclick=disp()>Add Volunteer</button>
+<center><div id='form'>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.title}}
+    <table>
+           <tr> <td><label for="vname">Volunteer Name</label></td></tr>
+           <tr><td><input id="inputs" type="text" name="vname" placeholder="Enter your name" required></td></tr>
+           <tr><td><label for="vmobile">Mobile Number</label></td></tr>
+           <tr><td><input id="inputs" type="tel" name="vmobile" placeholder="enter your mobile number" required></td></tr>
+           <tr><td><label for="vemail">Email </label></td></tr>
+           <tr><td><input id="inputs" type="email" name="vemail" placeholder="example@gmail.com" required ></td></tr>
+           <tr><td><label for="address">Address</label></td></tr>
+           <tr><td><input id="inputs" type="textarea" name="address" placeholder="Address Pettu..." required></td></tr>
+           <tr> <td><label for="role">Role</label></td></tr>
+           <tr><td><input id="inputs" type="text" name="role" placeholder="Role of Volunteer" required></td></tr>
+    </table>
+            <input type='submit' id='button' value="Submit"> <input id='button' type="reset">
+    </form>
+</div>
+</center>
+<div class="show">
+    <div class="row">
+        <div class="col-md-12">
+            
+            <center><h2>info of all Volunteers</h2></center>
+            {% if vols%}
+                    <table class="table table-striped">
+                        <thead>
+                            <tr><th>S.no</th><th>Name</th><th>Email </th> <th>mobile</th><th>Role</th><th>Address</th><th>Date Of Joining</th></tr>
+                        </thead>
+                        <tbody>
+                            {% for pr in vols %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{ pr.vname }}</td>
+                                <td>{{ pr.vemail }}</td>
+                                <td>{{ pr.vmobile }}</td>
+                                <td>{{ pr.role }}</td>
+                                <td>{{ pr.address }}</td>
+                                <td>{{ pr.date_joined }}</td>
+                                <td><a href="/CeremoAdmin/delete_volunteers/{{pr.id}}" class="btn btn-danger md-sm">Delete</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {%else%}<h2> Add some Volunteers </h2>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+
+
+</div>
+<style>
+    body{
+        background:	#996633;
+    }
+    #form{
+        height:0px;
+        overflow:hidden;
+    }
+    #Volunteer{
+        display:flex;
+        flex-direction:column;
+        min_height:350px;
+        gap:15px;    
+    }
+    #Volunteer:first-child{
+        position:relative;
+        margin-right:auto;
+        
+    }
+    #Volunteer>button,#button{
+        background:green;
+        color:white;
+        font-size:22px;
+        border:1px solid white;
+        padding:10px;
+        border-radius:12px;
+        width:250px;
+        height:50px;
+        border-radius:12px;
+    }
+    td>label{
+        position:relative;
+        right:30px;
+    }
+    td>input{
+        border-radius:14px;
+        box-shadow: 2px 2px 8px .3px black;
+        left:40px;
+        position:relative;
+        height:25px;
+        top:-8px;
+    
+    #form{
+        width:0px;
+        min-height:400px;
+        transition= .3s white;
+    }
+</style>
+<script>
+    function disp(){
+        var disp = document.getElementById('form');
+        if (disp.style.height=='0px'){
+            disp.style.height='450px';
+            disp.style.transition='ease .3s';
+            }
+        else{
+                disp.style.height='0px';
+                disp.style.transition='ease .3s';
+
+            }
+    }
+</script>
+{% endblock %}

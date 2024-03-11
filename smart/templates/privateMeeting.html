@@ -1,0 +1,171 @@
+
+{% extends "master.html"%}
+{% load custom_filters %}
+
+{% block title %} 
+Private Meeting Booking
+{% endblock %} 
+
+{% block content %}
+<div id='content'>
+<center><h2 id="form-name1">Private Meeting Booking</h2><p>{{request.email}}</p></center>
+<div id="cradle-page">
+    <div id="list">
+        <button  class="filter-button" data-filter="theme"  >Theme</button>
+        <button  class="filter-button" data-filter="cake"  >Cake</button>
+        <button  class="filter-button" data-filter="balloons" >Balloons</button>
+        <button  class="filter-button" data-filter="entertainment" >Entertainments</button>
+        <button  class="filter-button" data-filter="decoration"  >Decoration</button>
+        
+    </div>
+<div id="items">
+    <div id="image-gallery">
+        {% for image in images %}
+            <div class="image-item" data-type="{{ image.pic_type }}">
+                <img class='disp_image' src="{{ image.pic.url }}" id="{{image.pk}}" data-custom-attribute="{{ image.pic_type }}" alt="{{ image.pic_name }}" draggable="false" onclick='add(this)'>
+                <button type='radio' name='b{{image.pic_type}}' >{{ image.pic_name }}</button>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+<center>
+<form method="post" action="">
+    {% csrf_token %}
+    {{form.title}}
+<div style="display:none;">
+<input type='text' id='form-name' name='form_name' value='' required>
+<input type='text' name='username' value='{{session_username}}' required>
+<input type='email' name='email' value='{{email}}' required>
+<input class="inputs" type="text" id="theme"  name="theme" >
+<input class="inputs" type="text" id="cake"  name="cake"  >
+<input class="inputs" type="text" id="cradle"  name="cradle"  >
+<input class="inputs" type="text" id="balloons" name="balloons" >
+<input class="inputs" type="text" id="entertainment" name="entertainment">
+<input class="inputs" type="text" id="decoration"  name="decoration" >
+</div>
+<br>
+<label for="Guest" >No of Guest :</label><br>
+<input type='number' id='guest' name='guest' value='100' required><br><br>
+<label for="date" >Date of Event :</label><br>
+<input class="inputs" type='date' name='date' style='width:100px;'><br><br>
+<label for="date" >Event's Location :</label><br>
+<input type='text' name='location' col style="width:200px;height:50px;border-radius:8px;" value="Osmania University,Hyderabad 5000007" required><br><br>
+<label for="suggest" >More suggestions :</label><br>
+<input type='textarea' name='suggest' required><br><br>
+<input  type='submit' value="submit">
+</form>
+<style>
+    form>label{
+        font-weight:bold;
+        position:relative;
+        left:-30px;
+    }
+    form>input{
+        padding:6px;width:200px;
+        border:2px solid gray;position:relative;
+        left:100px;border-radius:20px;
+    }
+</style>
+</div>
+<script>
+   document.getElementById('form-name').value=document.getElementById('form-name1').innerHTML;
+    document.querySelectorAll('.filter-button').forEach(function (button) {
+        button.addEventListener('click', function () {
+            var filterType = button.getAttribute('data-filter');
+            document.querySelectorAll('.image-item').forEach(function (imageItem) {
+                if (filterType === 'all' || imageItem.getAttribute('data-type') === filterType) {
+                    imageItem.style.display = 'block';
+                } else {
+                    imageItem.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    function add(clickedImage) {
+        const imageItems = document.querySelectorAll('.image-item');
+        imageItems.forEach((item) => {
+            const img = item.querySelector('img');
+    
+            if (img === clickedImage) {
+               
+                img.style.border = '4px solid green';
+    
+               
+                const dataCustomAttribute = img.getAttribute('data-custom-attribute');
+                const source = img.getAttribute('src');
+                document.getElementById(dataCustomAttribute).value = source;
+            } else {
+                
+                img.style.border = 'none';
+            }
+        });
+    }
+    
+
+
+</script>
+<style>
+    #content{
+        min-height:450px;
+        background-color:;
+    }
+    .disp_image{
+        border:none;
+    }
+    .inputs{
+        text-align:center;
+        align-itens:center;
+        border-radius:8px;
+        width:60%;
+        margin:2px;
+    }
+
+    #image-gallery{
+        display:grid;
+        grid-template-columns:auto auto auto;
+
+    }
+    
+    .image-item{
+        object-fit:contain;
+        width:200px;
+        height:200px;
+    }
+    .image-item>img{
+        width:100%;
+        height:100%;
+    }
+    #cradle-page{
+        gap: 3px;
+        display: flex;
+        width: 100%;
+        background-color: inherit;
+    }
+    #list{
+        display:grid;
+        grid-template-rows: auto;
+        width: 200px;
+        height: 500px;
+        background-color: inherit;
+        border-right: 1px solid black;
+        gap: 2px;
+    }
+    #list button{
+        border: none;   
+    }
+    #list button:hover{
+        font-size: 20px;
+        background-color: rgba(0, 0, 0, 0.986);
+        color: white;
+        border-radius: 20px;
+    }
+   #cradle-page #items{
+    height: 500px;
+    width: 100%;
+    border: .5px solid black;
+
+   }
+</style>
+{% endblock %}

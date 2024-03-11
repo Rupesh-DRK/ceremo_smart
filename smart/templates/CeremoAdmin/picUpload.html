@@ -1,0 +1,62 @@
+{% extends 'CeremoAdmin/master_admin.html' %}
+{% block title%}
+uploading pictures
+{% endblock %}
+
+{% block content %}
+<center>
+    {% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+      <p{% if message.tags %} class="{{ message.tags }}"{% endif %} style="text-align:center;color:green;">{{ message }}')</p>
+    {% endfor %}
+  </div>
+{% endif %}
+    <h1>Uploading Pictures...</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.title}}
+        <table>
+            <tr><td><label for="pic_name">Picture Name</label></td></tr>
+            <tr>    <td><input type="text" name="pic_name" placeholder="enter picture's name"></td>       </tr>
+            <tr>    <td><label for="pic">Picture</label></td>       </tr>
+            <tr>    <td><input type="file" name="pic" id="pic" accept="image/*" required></td>       </tr>
+            <tr>    <td><label for="pic_type">Picture Type</label></td> </tr>
+            <tr>    <td><select name="pic_type" id="pic_type">
+                    <option value="theme">Theme</option>
+                    <option value="cradle">Cradle</option>
+                    <option value="cake">Cake</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="balloons">Balloons</option>
+                    <option value="decoration">Decorations</option>
+                </select></td></tr>   
+        </table>
+        <br>
+                <button type="submit">Upload</button> 
+    </form>
+</center>
+<style>
+    body{
+        background-color:	 #004d00;
+    }
+    
+    table{
+        padding: 5px;
+        border-radius: 12px;
+        background-color: white;
+    }
+    label{
+    font-size: large;
+    }
+    input,select{
+        margin-left: 50px;
+        margin-right: -50px;
+        border-radius: 12px;text-align: center;
+    }
+    button{
+        color: white;
+        background-color: black;
+        box-shadow: 1px 2px 8px 4px  white;
+    }
+</style>
+{%endblock%}

@@ -1,0 +1,28 @@
+{% extends 'master.html'%} 
+{% load static %}
+{%block title%}
+Events
+{% endblock%}
+{% block content %} 
+
+{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% include 'eventNav.html'%}<br>
+<div id='body'><center>Please select any of events..</center></div>
+
+<style>
+    #body{
+        min-height:350px;
+        background:transparent;
+    }
+body{
+    background-image:url('{% static "Picture2.jpg"%}');
+   
+}
+</style>
+{% endblock %}

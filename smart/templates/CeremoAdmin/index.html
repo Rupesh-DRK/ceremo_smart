@@ -1,0 +1,39 @@
+{% extends 'CeremoAdmin/master_admin.html' %}
+{% load static %}
+{% block title %}
+Users list
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <center><h2>informations of users</h2></center>
+                
+                    <table class="table table-striped">
+                        <thead>
+                            <tr><th>S.no</th><th>Name</th><th>Email </th> <th>mobile</th><th>Last Login</th><th>active status</th></tr>
+                        </thead>
+                        <tbody>
+                            {% for pr in users %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{ pr.username }}</td>
+                                <td>{{ pr.email }}</td>
+                                <td>{{ pr.mobile }}</td>
+                                <td>{{ pr.last_login }}</td>
+                                <td>{{ pr.is_active }}</td>
+                                <td><a href="/CeremoAdmin/delete_user/{{pr.id}}" class="btn btn-danger md-sm">Delete</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+<style>
+    body{
+        background:#4000ff;
+    }
+</style>
+{% endblock %}

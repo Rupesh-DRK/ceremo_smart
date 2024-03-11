@@ -1,0 +1,14 @@
+{% extends 'master.html' %}
+{%load static%}
+{%block title%}
+sign in{%endblock%}
+{%block content%}
+<body  background="{% static 'bg2.jpg' %}">
+<div id=body>
+<div id="card_back">
+{% include 'login.html' %}
+</div>
+</div>
+
+</body>
+{% endblock%}

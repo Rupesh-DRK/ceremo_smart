@@ -1,0 +1,98 @@
+{% extends 'CeremoAdmin/master_admin.html' %}
+{% block title %} 
+User Login
+{% endblock %} 
+
+{% block content %}
+<div id="body">
+    <div id="card">
+        <div id="card_inner">
+        <div id="card_front">  
+<div>
+    
+<form method="POST">
+    {% csrf_token %}
+    <table>
+    <tr> <td><label for="username">First Name</label></td></tr>
+    <tr><td><input id="inputs" type="text" name="username" placeholder="Enter your name" required value="{{u.username}}"></td></tr>
+    <tr><td><label for="mobile">Mobile Number</label></td></tr>
+    <tr><td><input id="inputs" type="tel" name="mobile" placeholder="enter your mobile number" required value="{{u.mobile}}"></td></tr>
+    <tr><td><label for="email">Email </label></td></tr>
+    <tr><td><input id="inputs" type="email" name="email" placeholder="example@gmail.com" value="{{u.email}}" ></td></tr>
+    <tr><td><label for="Password">Password</label></td></tr>
+    <tr><td><input id="inputs" type="password" name="password" placeholder="enter your password" value="{{ u.password}}"></td></tr>
+ </table>
+ <br>
+ <button class=" btn btn-success" type="submit">update</button><input type="reset">
+</form>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</body>
+<style>
+    body{
+        background-color:#00004d;
+    }
+    #body{
+        display: grid;
+        width: 100%;
+        height: 500px;
+        justify-content:center;
+        place-items: center;   
+    }
+    #card{
+        width:400px;
+        height: 280px;
+        perspective: 1000px;
+        background-color:transparent;
+    }
+    #card_inner{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 1.2s;
+        transform-style: preserve-3d;
+    }
+    #card_front,#card_back{
+        position: absolute;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        text-align: center;
+        place-items: center;
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+    }
+    #card_front{
+        background-color:inherit;
+        color: black;
+    }
+    #card_back{
+        background-color: inherit;
+        color: black;
+        transform: rotateY(180deg);
+    }
+   #inputs{
+        border-width:0px 0px 1.9px 1.8px;
+        border-radius:20px;
+        margin-left: 100px;
+    }
+    #inputs:hover{
+        border-color:orange;
+    }
+    label{
+        margin-left: -80px;
+        padding:0px 8px 0px 5px;
+        border-radius:12px;
+        font-weight:bold;
+    }
+
+</style>
+{% endblock %} 

@@ -1,0 +1,92 @@
+{% extends "master.html"%}
+{%load static %}
+{% block title %} 
+User Login
+{% endblock %} 
+
+{% block content %}
+<body background="{% static 'bg2.jpg' %}">
+<div id="body">
+    <div id="card">
+        <div id="card_inner">
+        <div id="card_front">  
+<div>
+    {% include 'register.html' %}
+
+<p>Click Here to  <a href="{% url 'log_in'%}">Log In</a> </p>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</body>
+<style>
+    #body{
+        display: grid;
+        width: 100%;
+        height: 500px;
+        justify-content:center;
+        place-items: center;
+        background-color:transparent;
+        border: 1px solid;
+    }
+    #card{
+        width:400px;
+        height: 280px;
+        perspective: 1000px;
+        background-color:transparent;
+    }
+    #card_inner{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 1.2s;
+        transform-style: preserve-3d;
+    }
+    #card_front,#card_back{
+        position: absolute;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        text-align: center;
+        place-items: center;
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+    }
+    #card_front{
+        background-color:inherit;
+        color: black;
+    }
+    #card_back{
+        background-color: inherit;
+        color: black;
+        transform: rotateY(180deg);
+    }
+   #inputs{
+        border-width:0px 0px 1.9px 1.8px;
+        border-radius:20px;
+        margin-left: 100px;
+    }
+    #inputs:hover{
+        border-color:orange;
+    }
+    label{
+        margin-left: -80px;
+        padding:0px 8px 0px 5px;
+        border-radius:12px;
+    }
+
+</style>
+<script>
+    function up(){
+        document.getElementById('card_inner').style.transform='rotateY(180deg)';
+    }
+    function dn(){
+        document.getElementById('card_inner').style.transform='rotateY(360deg)';
+    }
+</script>
+{% endblock %} 

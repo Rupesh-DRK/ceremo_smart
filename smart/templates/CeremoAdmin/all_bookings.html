@@ -1,0 +1,78 @@
+{% extends 'CeremoAdmin/master_admin.html' %}
+{% load static %}
+{% block title %}
+all Bookings
+{% endblock %}
+{% block content %}
+<div class="container">
+    {%if bookings%} 
+    <div class="row">
+        <div class="col-md-12">
+            <center><h2>All Bookings</h2></center>
+                        
+                    <table class="table table-striped">
+
+                            <thead>
+                            <tr><th>Booked On</th><th>Booked For</th><th>Client</th><th>Email</th><th>Event</th><th>Theme</th><th>Cradle</th><th>Cake</th><th>Decoration</th><th>Entertainment</th><th>Balloons</th><th>Status</th><th>Address</th><th></th><th></th><th>Planner Details</th></tr>
+                            </thead>
+                            <tbody>
+                            {% for d in bookings %}
+                        <tr>
+                            <td>{{d.booked_on}}</td><td>{{d.date}}</td><td>{{d.username}}</td><td>{{d.email}}</td><td>{{d.form_name}}</td>
+                            <td><img src="{{d.theme}}"></td>
+                            <td><img src="{{d.cradle}}"></td>
+                            <td><img src="{{d.cake}}"></td>
+                            <td><img src="{{d.decoration}}"></td>
+                            <td><img src="{{d.entertainment}}"></td>
+                            <td><img src="{{d.balloons}}"></td>
+                            <td>{{d.status}}</td><td>{{d.location}}</td>
+                            <td><a  href="/CeremoAdmin/all_bookings/{{d.id}}">Delete</a></td>
+                            <td><a style="background:green;" href="/CeremoAdmin/assign_volunteer/{{d.id}}">Assign_Volunteer</a></td>
+                            <td>{{d.planner}}</td>
+                        </tr>
+                            {% endfor %}
+                            </tbody>
+                 </table>
+
+                </div>
+            </div>
+    {%else%}
+   <center> <h1>No BOOKINGS ARE DONE.</h1></center>
+    {%endif%} 
+        </div>
+<style>
+    body{
+        background:#800000;
+    }
+    #container{
+        overflow-x:scroll;
+        width:100%;
+    }
+    td{
+        width:150px;
+        max-height:100px;
+        padding:10px;
+    }
+    td>img{
+        width:100%;
+        height:100%;
+        border-radius:10px;
+    }
+    tr{
+        width:100%;
+        border:.5px solid black;
+    }
+    tbody:nth-child(2n+1){
+        background:gray;
+    }
+    td>a{
+        text-decoration:none;
+         width:100px;
+         padding:5px;
+         color:white;
+        background:tomato;
+        border-radius:12px;
+        
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block title %}
+Admin Login
+{% endblock %}
+{% block content %}
+<center>
+    <div class="container">
+    <h1>Admin's Login Page</h1>
+    <form method='POST' action=''>
+        {% csrf_token %}
+        <label for='username'>NAME</label><br>
+        <input id='input' type='text' name='username' required><br>
+        <label for='password'>PASSWORD</label><br>
+        <input id='input' type='password' placeholder="" name='password' required><br>
+        <input type='submit' value='Login'>
+    </form>
+    <p> Username = 'Rupesh' & password = 'admin@1234'</p>
+</div>
+
+</center>
+<style>
+    body{
+        background-color:#CCCC99;
+    }
+    .container{
+        display:flex;
+        flex-direction:column;
+        background-color:#CCCC99;
+        min-height:450px;
+        align-items:center;
+        place-content:center;
+    }
+
+    form{
+        display:flex;
+        flex-direction:column;
+        width:300px;
+        align-items:center;
+        min-height:350px;
+        place-content:center;
+        
+    }
+    label{
+        
+        font-size:24px;
+        position:relative;
+        right:40px;
+        
+    }
+    form>#input{
+        border:1px solid #006400;
+        border-radius:8px;
+        color:#630063;
+        height:1.5rem;
+        position:relative;
+        left:40px;
+    }
+</style>
+{% endblock %}

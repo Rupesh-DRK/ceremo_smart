@@ -1,0 +1,123 @@
+{% extends 'master.html' %}
+{%load static%}
+{%block title%}{%endblock%}
+
+{%block content%}
+<div id="div">
+    <center>
+
+        {% if messages %}
+      <div class="messages" style="color:green;">
+        {% for message in messages %}
+          <p{% if message.tags %} class="{{ message.tags }}"{% endif %} style="text-align:center;color:green;">{{ message }}')</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div style="border:.3px solid black;border-radius:8px;" >
+        <table class="table table-striped">
+            <thead><tr><th>S.no</th><th>Name</th><th>Email </th> <th>mobile</th><th>Last Login</th><th>active status</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td>{{user.id}}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.mobile }}</td>
+                                <td>{{ user.last_login }}</td>
+                                <td>{{ user.is_active }}</td>
+                            </tr>
+                        
+                        </tbody>
+        </table>
+
+    </div>
+
+<br><br>
+<button onclick="update()" style="background:green;color:white;padding:6px;">Update Profile</button>
+<br><br>
+
+
+<div id="update">
+    <center>
+     <form method="POST" action=''>
+    {% csrf_token %}
+    <table>
+    <tr> <td><label for="username">First Name</label></td></tr>
+    <tr><td><input id="inputs" type="text" name="username" placeholder="Enter your name" required value="{{user.username}}" required></td></tr>
+    <tr><td><label for="mobile">Mobile Number</label></td></tr>
+    <tr><td><input id="inputs" type="tel" name="mobile" placeholder="enter your mobile number" required value="{{user.mobile}}" required></td></tr>
+    <tr><td><label for="email">Email </label></td></tr>
+    <tr><td><input id="inputs" type="email" name="email" placeholder="example@gmail.com" value="{{user.email}}" required ></td></tr>
+    <tr><td><label for="Password">Password</label></td></tr>
+    <tr><td><input id="inputs" type="password" name="password" placeholder="enter your password" value="" required></td></tr>
+    </table>
+             <br>
+                 <input type="submit" value="Submit"><input type="reset">
+                
+        </form><br></div>
+    </center>
+</div>
+
+</div>
+<script>
+    function update(){
+        var div=document.getElementById('update');
+        div.style.display='block';
+    }
+</script>
+
+<style>
+   body{
+    background:tomato;
+   }
+    #update{
+        display:none;
+        border:.3px solid black;
+        border-radius:8px;
+        background:white;
+    }
+    td>label{
+        font-weight:bold;
+        position:relative;
+        left:-30px;
+    }
+    td>input{
+        position:relative;
+        left:50px;
+        border-radius:8px;
+        border:2.5px solid blue;
+        padding:10px;
+    }
+    #div{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        padding:30px;
+        justify-content:space-around;
+    }
+    table{
+        background:white;
+        color:blue;
+        padding:5px;
+        border-radius:8px;
+        padding:20px;  
+    }
+    td{
+        padding:10px;
+        border:1px solid white;
+        border-radius:8px;
+        color:black;    
+    }
+    tr{
+        width:100%;
+        height:3rem;     
+    }
+    th{
+        border:.2px solid black;
+        border-radius:8px;
+        color:red;
+        background:gray;
+        color:black;
+    }
+</style>
+
+{%endblock%}

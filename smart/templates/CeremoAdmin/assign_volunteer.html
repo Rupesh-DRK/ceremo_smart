@@ -1,0 +1,40 @@
+{% extends 'CeremoAdmin/master_admin.html' %}
+{% load static %}
+{% block title %}
+home  
+{% endblock %}
+{% block content %}
+<div class="container">
+<form method="POST" action="">
+    {% csrf_token %}
+<table>
+    <tr><td><label for="volunteer">Volunteer Name :</label></td><tr>
+    <tr><td><input type="text" name="volunteer"></td><tr>
+    <tr><td><label for="contact">Mobile Number :</label></td><tr>
+    <tr><td><input type="text" name="contact"></td><tr>
+</table><br>
+<input type='submit' value="Submit">
+</form>
+</div>
+
+<style>
+    .container{
+        width:100%;
+        display:flex;   flex-direction:column;
+        min-height:350px;
+        align-items:center;
+        place-content:center;
+        text-align:center;
+        position:relative;
+        font-weight:bold;
+        
+    }
+    body{
+        background: #00cccc;
+    }
+    input{
+        border-radius:12px;
+    }
+</style>
+
+{% endblock %}

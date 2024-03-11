@@ -1,0 +1,84 @@
+{% extends "master.html"%}
+
+{% block title %}
+View Gallery
+{% endblock %}
+
+{% block content %}
+
+<center>
+  <h3>Cradle</h3>
+  <div id="mini-gallery">
+    {% for image in gallery%}
+    {%if image.pic_type == 'cradle'%}
+    <div id="pic"><img src="{{image.pic.url}}"></div>
+    {%endif%}
+    {%endfor%}
+  </div>
+  <hr>
+
+<h3>Birthdays</h3></center>
+  <div id="mini-gallery">
+    {% for image in gallery%}
+    {%if image.pic_type == 'birthday'%}
+    <div id="pic"><img src="{{image.pic.url}}"></div>
+    {%endif%}
+    {%endfor%}
+  </div>
+<hr>
+<h3>Weddings</h3>
+  <div id="mini-gallery">
+    {% for image in gallery%}
+    {%if image.pic_type == 'wedding'%}
+    <div id="pic"><img src="{{image.pic.url}}"></div>
+    {%endif%}
+    {%endfor%}
+  </div>
+<hr>
+
+<h3>Anniversaries</h3>
+  <div id="mini-gallery">
+    {% for image in gallery%}
+    {%if image.pic_type == 'anniversary'%}
+    <div id="pic"><img src="{{image.pic.url}}"></div>
+    {%endif%}
+    {%endfor%}
+  </div>
+<hr>
+<h3>Parties</h3>
+  <div id="mini-gallery">
+    {% for image in gallery%}
+    {%if image.pic_type == 'party'%}
+    <div id="pic"><img src="{{image.pic.url}}"></div>
+    {%endif%}
+    {%endfor%}
+  </div>
+
+<style>
+  body{
+    background:#85adad;
+  }
+  #mini-gallery{
+    display:grid;
+    height:auto;
+    width:100%;
+    gap:2rem;
+    justify-content: center;
+    grid-template-columns: auto auto auto;
+
+  }
+  #pic img{
+    width:100%;
+    height:100%;
+    border-radius:12px;
+    border:5px solid gray;
+  }
+  #pic{
+    height:200px;
+    width:200px;
+    object-fit:contain;padding:10px;
+  }
+</style>
+
+
+{% endblock %} 

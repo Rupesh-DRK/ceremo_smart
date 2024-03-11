@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+</head>
+<body>
+<br>
+<div id="container" class="container" style="display: flex; gap: 2px;">
+<div class="events" id="'events">
+   <a href=" {% url 'cradle' %}"> Cradle  </a>
+   <a href=" {% url 'birthday' %}"> Birthday </a>
+   <a href=" {% url 'wedding' %}"> Marriage  </a>
+   <a href=" {% url 'getTogether' %}"> Get Together </a>
+   <a href=" {% url 'privateMeeting' %}"> Private Meetings </a>
+   <a href=" {% url 'party' %}"> Party </a>
+   <a href=" {% url 'anniversary' %}"> Anniversary </a>
+
+</div>
+</div>
+<style>
+    .events{
+        display: flex;
+        justify-content:space-between;
+        width: 100%;
+        height: 40px;
+        border: 1px solid black;
+        background-color: inherit;
+        color: inherit;
+        overflow: hidden;
+    }
+    .events a{
+        display:grid;
+        grid-template-rows: auto;
+        text-decoration: none;
+        color:inherit;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+       
+    }
+    .events a:hover{
+        font-weight: bolder;
+        background-color: black;
+        color: white;
+        border-radius: 8px;
+    }
+</style>
+    
+</body>
+</html>

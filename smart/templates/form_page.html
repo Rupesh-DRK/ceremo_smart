@@ -1,0 +1,22 @@
+<!-- form_page.html -->
+{% extends "master.html" %}
+{% block title %} 
+Form Page
+{% endblock %} 
+
+{% block content %} 
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <!-- Display the selected images -->
+    {% for selected_image in selected_images %}
+        <div>
+            <img src="{{ selected_image.picUrl }}" alt="{{ selected_image.picName }}">
+            <p>{{ selected_image.picName }}</p>
+        </div>
+    {% endfor %}
+
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

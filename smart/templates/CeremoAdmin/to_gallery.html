@@ -1,0 +1,60 @@
+{% extends 'CeremoAdmin/master_admin.html' %}
+{% block title%}
+Pictures For Gallery
+{% endblock %}
+
+{% block content %}
+<center>
+    {% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+      <p{% if message.tags %} class="{{ message.tags }}"{% endif %} style="text-align:center;color:green;">{{ message }}')</p>
+    {% endfor %}
+  </div>
+{% endif %}
+    <h1>upload memorable pictures...</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.title}}
+        <table> 
+            
+            <tr>    <td><label for="pic">Picture</label></td>       </tr>
+            <tr>    <td><input type="file" name="pic" id="pic" accept="image/*" required></td>       </tr>
+            <tr>    <td><label for="pic_type">Picture Type</label></td> </tr>
+            <tr>    <td><select name="pic_type" id="pic_type">
+                    <option value="wedding">Wedding</option>
+                    <option value="birthday">Birthday</option>
+                    <option value="anniversary">Anniversary</option>
+                    <option value="cradle">Cradle ceremony</option>
+                    <option value="party">Party</option>
+                </select></td></tr>   
+        </table>
+        <br>
+                <button type="submit">Upload</button> 
+    </form>
+</center>
+<style>
+    body{
+        background-color:	 #004d00;
+    }
+    
+    table{
+        padding: 5px;
+        border-radius: 12px;
+        background-color: white;
+    }
+    label{
+    font-size: large;
+    }
+    input,select{
+        margin-left: 50px;
+        margin-right: -50px;
+        border-radius: 12px;text-align: center;
+    }
+    button{
+        color: white;
+        background-color: black;
+        box-shadow: 1px 2px 8px 4px  white;
+    }
+</style>
+{%endblock%}
