@@ -1,0 +1,115 @@
+{% extends 'master.html' %}
+{%load static %}
+
+{% block title %} 
+Home
+{% endblock%} 
+
+{% block content %} 
+<br><br>
+<center>
+<div id="photos">
+<img id="img" src="{% static 'bg2.jpg' %}" alt="">
+<img id="img" src="{% static 'background.jpg' %}" alt="">
+<img id="img" src="{% static 'birthday_bg.jpg' %}" alt="">
+<img id="img" src="{% static 'logo.png' %}" alt="">
+</div>
+<div id="text" ><h1 style="padding: 10px;">CEREMO SMART</h1></div>
+</center>
+<div id="picture_info">
+     <div id="picture"><img src="{% static 'marriage.jpeg'%}" alt="pic"> </div>
+    <div id="info" float='right'><p> <strong>" Experience the rich traditions and vibrant celebrations of wedding with us! 
+            Immerse yourself in a kaleidoscope of colors , melodious music and heartfilling rituals of Wedding. 
+        Join us for an unforgettable journey filled with joy , love and cherished moments that will leave lasting impressions.
+            Embrace the essense of India's cultural heritage and create unforgettable memories at wedding extravaganza..... "</strong></p></div>
+</div>
+    <div id="picture_info">
+    <div id="info"> <p> <strong>" Celebrating a beautiful journey of love and togetherness as you mark another year of cherished memories.
+        Come together to honor a love that stands the test of time and share in the joy of anniversary filled with laughter, love and much more.
+         Celebrate your Beautifull moment with us and make it even more beautifull. " </strong> </p></div>
+    <div id="picture"><img src="{% static 'anniversary.jpg' %}" alt=""></div>
+    </div>
+
+    <div id="picture_info">
+        <div id="picture"><img src="{% static 'birthday.jpg' %}" alt=""></div>
+        <div id="info"><p> <strong>" Get ready to party... and make it a day to remember. Gather to celebrate another Fantastic year of life.
+            Join us in commemorating a special Birthday filled with Love , Laugher , Surprises and Heartfelt wishes.
+            Let's come together to make the day magical , showeing the birthday star with love and joy." </strong> </p></div>
+    </div>
+<style>
+    #picture_info{
+        display:flex;
+        width: 100%;
+        height: auto;
+        gap: 5px;
+        padding: 5px;
+        gap:20px;
+    }
+    #picture{
+        width:55%;
+        height: 100%;
+        object-fit:contain;
+        border: 1px solid white;
+    }
+    #picture img{
+        width:100%;
+        height:100%;
+        border-radius:12px;
+    }
+    #info{ 
+        width: 40%;
+        height: 100%;
+        border: 1px solid inh;
+        background:white;
+        border-radius:80px 0px 80px 0px;
+        text-align:center;
+        align-item:center;
+        place-content:center;
+    }
+    #info p{
+        
+        width:auto;
+        height:100%;
+        color:black;
+        align-items:center;
+        place-content:center;
+        margin:20%;
+    }
+    body{
+       background-image: url({% static 'birthday_bg.jpg' %});
+       height:auto
+    }
+    #text{
+        width: 100%;
+        height: auto;
+        position: relative;
+        background: inherit;
+        backdrop-filter: blur(50px);
+        bottom: 50%;
+        font-size: larger; 
+    }
+    #photos{
+        width: 350px;
+        height: auto;
+        object-fit: fill;
+        display: grid;
+        grid-template-columns: auto auto;
+        border: 10px solid #353535;
+        border-radius: 8px;
+    }
+    #photos img{
+        width: 100%;
+        height:100%;
+    }
+    #img{
+        border: 10px solid rgb(216, 196, 196);
+        rotate: -30deg;
+    }
+    #img:hover{
+        rotate: 0deg;
+        position: relative;
+        z-index: 3;
+        transition: linear .5s;
+    }
+</style>
+{% endblock %} 
